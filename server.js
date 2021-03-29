@@ -1,16 +1,16 @@
 const express = require('express')
 const mongoose = require ("mongoose")
 const compression = require('compression')
+const multer = require('multer');
 const app = express()
 const path = require("path")
 const cors = require('cors')
 const header = require("./middleware/header")
 const Expences = require("./models/expence")
-require("./db/conn")
+require("./database/databaseConnection")
 const PORT = process.env.PORT || 8000;
 
 require('dotenv').config();
-
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -20,6 +20,39 @@ app.use(cors({origin: '*'}))
 app.use(header)
 app.use(compression())
 
+var Storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "assets");
+    },
+    filename: (req, file, callback) => {
+        callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+    }
+});
+
+const upload = multer({ storage: Storage })
+
+// POST Request for Image Upload
+
+app.post('/imageUpload', upload.single('file') , (req, res)=>{
+    const file = req.file;
+       
+    var send = new Expences({
+
+        paidBy:req.body.paidBy,
+        toWhom:req.body.toWhom,
+        date:req.body.date,
+        amount:req.body.amount,
+        description:req.body.description,
+        imgUrl:file.filename
+     })
+
+    send.save().then(()=>{
+        console.log(file.filename);
+    }).catch((e)=>{
+        console.log(e);
+    })
+    res.send(file)
+ })
 
 // Post Request For Create Student
 

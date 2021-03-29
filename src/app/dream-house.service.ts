@@ -10,6 +10,7 @@ export class DreamHouseService {
 
   readonly baseUrl = '';
   readonly fetchUrl = '/expences';
+  readonly ImageURL = '/imageUpload'
 
   getList(){
     return this.http.get(`${this.baseUrl}${this.fetchUrl}`)

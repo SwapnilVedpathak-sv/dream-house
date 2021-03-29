@@ -5,7 +5,8 @@ const expencesSchema = new mongoose.Schema({
    toWhom:String,
    date:String,
    amount:Number,
-   description:String
+   description:String,
+   imgUrl:String
 })
 
 // New Collection
