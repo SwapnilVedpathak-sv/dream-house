@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const studentSchema = new mongoose.Schema({
+const expencesSchema = new mongoose.Schema({
    paidBy:String,
    toWhom:String,
    date:String,
@@ -10,6 +10,6 @@ const studentSchema = new mongoose.Schema({
 
 // New Collection
 
-const Student = new mongoose.model('Student', studentSchema);
+const Expences = new mongoose.model('Expences', expencesSchema);
 
-module.exports = Student;
+module.exports = Expences;

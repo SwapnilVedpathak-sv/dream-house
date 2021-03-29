@@ -5,7 +5,7 @@ const app = express()
 const path = require("path")
 const cors = require('cors')
 const header = require("./middleware/header")
-const Student = require("./models/students")
+const Expences = require("./models/expence")
 require("./db/conn")
 const PORT = process.env.PORT || 8000;
 
@@ -23,11 +23,10 @@ app.use(compression())
 
 // Post Request For Create Student
 
-app.post("/students", ( req, res ) =>{
-    console.log(req.body);
-    const user = new Student(req.body);
-    user.save().then(() => {
-        res.status(201).send(user);
+app.post("/expences", ( req, res ) =>{
+    const postRequest = new Expences(req.body);
+    postRequest.save().then(() => {
+        res.status(201).send(postRequest);
     }).catch((e) => {
         res.status(400).send(e);
     })
@@ -35,11 +34,11 @@ app.post("/students", ( req, res ) =>{
 
 // Get Request For All Student
 
-app.get("/studentData", async( req,res ) => {
+app.get("/expences", async( req,res ) => {
     try{
-        const getStudentsData = await Student.find();
-        console.log(getStudentsData);
-        res.send(getStudentsData);
+        const getAllData = await Expences.find();
+        // console.log(getExpencesData);
+        res.send(getAllData);
     }catch(e){
         res.send(e);
     }
@@ -47,11 +46,11 @@ app.get("/studentData", async( req,res ) => {
 
 // Get Request For Only Single Student
 
-app.get("/studentData/:id", async( req,res ) => {
+app.get("/expences/:id", async( req,res ) => {
     try{
         const _id = req.params.id;
-        const singleStudentData = await Student.findById(_id);
-        res.send(singleStudentData);
+        const getSingleData = await Expences.findById(_id);
+        res.send(getSingleData);
     }catch(e){
         res.send(e);
     }
@@ -59,10 +58,10 @@ app.get("/studentData/:id", async( req,res ) => {
 
 // Put Request For Update Specific Student
 
-app.put("/students/:id", async( req,res ) => {
+app.put("/expences/:id", async( req,res ) => {
     try{
         const _id = req.params.id;
-        const putRequest = await Student.findByIdAndUpdate(_id, req.body, {
+        const putRequest = await Expences.findByIdAndUpdate(_id, req.body, {
             new : true
         });
         res.send(putRequest);
@@ -73,10 +72,10 @@ app.put("/students/:id", async( req,res ) => {
 
 // Patch Request For Update Specific Student
 
-app.patch("/students/:id", async( req,res ) => {
+app.patch("/expences/:id", async( req,res ) => {
     try{
         const _id = req.params.id;
-        const patchRequest = await Student.findByIdAndUpdate(_id, req.body, {
+        const patchRequest = await Expences.findByIdAndUpdate(_id, req.body, {
             new : true
         });
         res.send(patchRequest);
@@ -87,10 +86,10 @@ app.patch("/students/:id", async( req,res ) => {
 
 // Delete Request For Delete Specific Student
 
-app.delete("/students/:id", async( req,res ) => {
+app.delete("/expences/:id", async( req,res ) => {
     try{
         const _id = req.params.id;
-        const deleteRequest = await Student.findByIdAndDelete(_id)
+        const deleteRequest = await Expences.findByIdAndDelete(_id)
         res.send(deleteRequest);
     }catch(e){
         res.send(e);

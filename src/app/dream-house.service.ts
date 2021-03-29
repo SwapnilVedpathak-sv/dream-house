@@ -8,8 +8,8 @@ export class DreamHouseService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseUrl = '';
-  readonly fetchUrl = '/studentData';
+  readonly baseUrl = 'http://localhost:8000';
+  readonly fetchUrl = '/expences';
 
   getList(){
     return this.http.get(`${this.baseUrl}${this.fetchUrl}`)
