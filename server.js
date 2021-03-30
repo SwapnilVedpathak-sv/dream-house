@@ -35,7 +35,7 @@ const upload = multer({ storage: Storage })
 
 app.post('/imageUpload', upload.single('file') , (req, res)=>{
     const file = req.file;
-       
+    
     var send = new Expences({
 
         paidBy:req.body.paidBy,
