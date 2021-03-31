@@ -28,7 +28,7 @@ export class AddExpencesComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', this.images);
 
-    this.http.post<any>(`http://localhost:8000${this.house.ImageURL}`, formData).subscribe(
+    this.http.post<any>(`${this.house.baseUrl}${this.house.ImageURL}`, formData).subscribe(
       (res) => console.log(res),
       (err) => console.log(err)
     );
