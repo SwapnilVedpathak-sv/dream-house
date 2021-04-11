@@ -1,27 +1,15 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark pink ie-nav fixed-top" [containerInside]="false">
-    <mdb-navbar-brand>
-        <a class="logo navbar-brand" href="#"><strong>Dream House</strong></a>
-    </mdb-navbar-brand>
-    <links>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="home">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link" routerLink="add-expences">Add Expences</a>
-            </li>
-        </ul>
-        <ul class="navbar-nav nav-flex-icons">
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link"><mdb-icon fab icon="facebook-f"></mdb-icon></a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link"><mdb-icon fab icon="twitter"></mdb-icon></a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link"><mdb-icon fab icon="instagram"></mdb-icon></a>
-            </li>
-        </ul>
-    </links>
-</mdb-navbar>
-<router-outlet></router-outlet>
+<mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span routerLink="list">List Of Expences</span>
+        </button>
+        <button mat-menu-item>
+          <span routerLink="add-expences">Add Expences</span>
+        </button>
+      </mat-menu>
+    <span>Dream House</span>
+  </mat-toolbar>
+  <router-outlet></router-outlet>

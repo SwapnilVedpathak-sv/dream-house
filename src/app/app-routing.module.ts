@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { AddExpencesComponent } from './add-expences/add-expences.component';
 const routes: Routes = [
   {
-    path:'home',
+    path:'list',
     component: HomeComponent
   },
   {

@@ -1,13 +1,16 @@
-const express = require('express')
-const mongoose = require ("mongoose")
-const compression = require('compression')
+const express = require('express');
+const mongoose = require ("mongoose");
+const compression = require('compression');
+var router = express.Router();
+const bodyParse = require('body-parser');
+const JsonData = bodyParse.json();
 const multer = require('multer');
-const app = express()
-const path = require("path")
-const cors = require('cors')
-const header = require("./middleware/header")
-const Expences = require("./models/expence")
-require("./database/databaseConnection")
+const app = express();
+const path = require("path");
+const cors = require('cors');
+const header = require("./middleware/header");
+const Expences = require("./models/expence");
+require("./database/databaseConnection");
 const PORT = process.env.PORT || 8000;
 
 require('dotenv').config();
@@ -20,20 +23,20 @@ app.use(cors({origin: '*'}))
 app.use(header)
 app.use(compression())
 
-var Storage = multer.diskStorage({
+var storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        callback(null, "assets");
+        callback(null, "images");
     },
     filename: (req, file, callback) => {
         callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
     }
 });
 
-const upload = multer({ storage: Storage })
+const upload = multer({ storage: storage })
 
 // POST Request for Image Upload
 
-app.post('/imageUpload', upload.single('file') , (req, res)=>{
+app.post('/imageUpload',JsonData, upload.single('file') , (req, res)=>{
     const file = req.file;
     
     var send = new Expences({

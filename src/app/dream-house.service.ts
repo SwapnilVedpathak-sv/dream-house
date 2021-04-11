@@ -8,7 +8,7 @@ export class DreamHouseService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseUrl = '';
+  readonly baseUrl = 'http://localhost:8000';
   readonly fetchUrl = '/expences';
   readonly ImageURL = '/imageUpload'
 

@@ -9,6 +9,7 @@ import { DreamHouseService } from '../dream-house.service'
 })
 export class AddExpencesComponent implements OnInit {
   images:any;
+
   constructor(private http:HttpClient,
               private house:DreamHouseService
   ) { }
@@ -20,6 +21,7 @@ export class AddExpencesComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.images = file;
+      console.log(file)
     }
   }
 
@@ -29,7 +31,7 @@ export class AddExpencesComponent implements OnInit {
     formData.append('file', this.images);
 
     this.http.post<any>(`${this.house.baseUrl}${this.house.ImageURL}`, formData).subscribe(
-      (res) => console.log(res),
+      (res) => console.log("Responce",res),
       (err) => console.log(err)
     );
   }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DreamHouseService } from './dream-house.service'
+import { DreamHouseService } from './dream-house.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,5 +15,7 @@ export class AppComponent {
     this.house.getList().subscribe((result)=>{
      console.log(result);
     })
+    
   }
+  
 }
