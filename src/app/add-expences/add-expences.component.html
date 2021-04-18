@@ -1,1 +1,56 @@
-<h1>bye</h1>
+<div class="main-container">
+  <div class="container effect5">
+    <h2 class="mat-h2" style="text-align: center">Expences...</h2>
+
+    <form class="example-form">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Money Paid By</mat-label>
+        <input matInput placeholder="Enter name..." />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>To Whom You Paid Money</mat-label>
+        <input matInput placeholder="Enter a full name..." />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="example-full-width">
+        <mat-label>Bill Paid Date</mat-label>
+        <input matInput [matDatepicker]="dp" [formControl]="date" />
+        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+        <mat-datepicker #dp></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Select a Category</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option>None</mat-option>
+          <mat-option value="Labour">Labour</mat-option>
+          <mat-option value="Steel">Steel</mat-option>
+          <mat-option value="Cement">Cement</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>You selected: {{ selected }}</p>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Total Amount</mat-label>
+        <input matInput type="number" placeholder="Ex. It makes me feel..." />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Paid Amount</mat-label>
+        <input matInput type="number" placeholder="Ex. It makes me feel..." />
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Pending Amount</mat-label>
+        <input matInput type="number" placeholder="Ex. It makes me feel..." />
+      </mat-form-field>
+
+      <div>
+        <input type="file" name="" id="" />
+      </div>
+      <button mat-stroked-button color="accent">Accent</button>
+    </form>
+  </div>
+</div>

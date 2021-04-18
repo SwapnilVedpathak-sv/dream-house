@@ -7,15 +7,13 @@ import { DreamHouseService } from './dream-house.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
-  constructor(private house:DreamHouseService) { }
+
+  constructor() { }
   title = 'dream-house';
-  
+
   ngOnInit(): void {
-    this.house.getList().subscribe((result)=>{
-     console.log(result);
-    })
-    
+
+
   }
-  
+
 }

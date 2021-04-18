@@ -1,0 +1,41 @@
+.main-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
+  padding-bottom: 3%;
+}
+.body{
+  background-color: gray;
+}
+.container {
+  padding: 2%;
+  border: 1px solid #000000;
+  max-width: 520px;
+  background:#FFF;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 450px;
+  width: 100%;
+}
+.example-full-width {
+  width: 100%;
+  margin-top: 2%;
+}
+.effect5{
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  background: white;
+  border-radius: 5px;
+}
+button{
+  margin-left: 41%;
+  margin-top: 8%;
+}
+
