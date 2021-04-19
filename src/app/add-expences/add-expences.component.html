@@ -6,17 +6,17 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Money Paid By</mat-label>
-        <input matInput placeholder="Enter name..." />
+        <input matInput placeholder="Enter name..." name="moneyPaidBy" [(ngModel)]="moneyPaidBy">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>To Whom You Paid Money</mat-label>
-        <input matInput placeholder="Enter a full name..." />
+        <input matInput placeholder="Enter a full name..." name="toWhomMoneyPaid" [(ngModel)]="toWhomMoneyPaid">
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="example-full-width">
         <mat-label>Bill Paid Date</mat-label>
-        <input matInput [matDatepicker]="dp" [formControl]="date" />
+        <input matInput [matDatepicker]="dp" [formControl]="date">
         <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
         <mat-datepicker #dp></mat-datepicker>
       </mat-form-field>
@@ -34,23 +34,24 @@
 
       <mat-form-field class="example-full-width">
         <mat-label>Total Amount</mat-label>
-        <input matInput type="number" placeholder="Ex. It makes me feel..." />
+        <input matInput type="number" placeholder="Ex. It makes me feel..." name="totalAmount" [(ngModel)]="totalAmount">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Paid Amount</mat-label>
-        <input matInput type="number" placeholder="Ex. It makes me feel..." />
+        <input matInput type="number" placeholder="Ex. It makes me feel..." name="paidAmount" [(ngModel)]="paidAmount">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <mat-label>Pending Amount</mat-label>
-        <input matInput type="number" placeholder="Ex. It makes me feel..." />
+        <input matInput type="number" placeholder="Ex. It makes me feel..." name="pendingAmount" [(ngModel)]="pendingAmount">
       </mat-form-field>
 
-      <div>
-        <input type="file" name="" id="" />
-      </div>
-      <button mat-stroked-button color="accent">Accent</button>
+      <mat-form-field appearance="legacy">
+        <ngx-mat-file-input formControlName="legacy" placeholder="Multiple inputs"></ngx-mat-file-input>
+      </mat-form-field>
+
+      <button mat-stroked-button color="accent" (click)="clickme()">Accent</button>
     </form>
   </div>
 </div>

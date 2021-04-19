@@ -35,8 +35,8 @@ export const MY_FORMATS = {
   ],
 })
 export class AddExpencesComponent implements OnInit {
-  selected = 'None';
   date = new FormControl(moment());
+  legacy = new FormControl();
   images:any;
 
   constructor(private http:HttpClient, private house:DreamHouseService) { }
@@ -60,5 +60,31 @@ export class AddExpencesComponent implements OnInit {
       (res) => console.log("Responce",res),
       (err) => console.log(err)
     );
+  }
+
+  moneyPaidBy: string = "";
+  toWhomMoneyPaid: string = "";
+  // date: string = "";
+  totalAmount: string = "";
+  paidAmount: string = "";
+  pendingAmount: string = "";
+  selected: string = "";
+
+
+  clickme() {
+
+  let formDetails = {
+    "moneyPaidBy": this.moneyPaidBy,
+    "toWhomMoneyPaid": this.toWhomMoneyPaid,
+    "billPaidDate": this.date,
+    "totalAmount": this.totalAmount,
+    "paidAmount": this.paidAmount,
+    "pendingAmount": this.pendingAmount,
+    "category": this.selected,
+    "legacy": this.legacy
+  }
+
+    console.log("it does nothing", formDetails);
+    console.log("this.legacy",this.legacy)
   }
 }
