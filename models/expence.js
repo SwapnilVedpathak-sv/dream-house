@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const expencesSchema = new mongoose.Schema({
-   paidBy:String,
-   toWhom:String,
-   date:String,
-   amount:Number,
-   description:String,
-   imgUrl:String
+  moneyPaidBy:String,
+  toWhomMoneyPaid:String,
+  totalAmount:Number,
+  paidAmount:Number,
+  pendingAmount:Number,
+  category:String,
+  datePicker:Object,
+  formatedDate:Object
 })
 
 // New Collection

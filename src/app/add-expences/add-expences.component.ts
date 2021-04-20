@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DreamHouseService } from '../dream-house.service';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as _moment from 'moment';
@@ -35,11 +35,23 @@ export const MY_FORMATS = {
   ],
 })
 export class AddExpencesComponent implements OnInit {
+  formatedDate:any;
+  NewExpence : FormGroup;
   date = new FormControl(moment());
-  legacy = new FormControl();
   images:any;
 
-  constructor(private http:HttpClient, private house:DreamHouseService) { }
+  constructor(private http:HttpClient, private house:DreamHouseService, private fb : FormBuilder) {
+    this.NewExpence = this.fb.group({
+      fileInput: [],
+      moneyPaidBy: [],
+      toWhomMoneyPaid:[],
+      totalAmount:[],
+      paidAmount: [],
+      pendingAmount: [],
+      category: [],
+      datePicker: []
+    })
+   }
 
   ngOnInit(): void {
   }
@@ -61,30 +73,17 @@ export class AddExpencesComponent implements OnInit {
       (err) => console.log(err)
     );
   }
-
-  moneyPaidBy: string = "";
-  toWhomMoneyPaid: string = "";
-  // date: string = "";
-  totalAmount: string = "";
-  paidAmount: string = "";
-  pendingAmount: string = "";
-  selected: string = "";
-
-
-  clickme() {
-
-  let formDetails = {
-    "moneyPaidBy": this.moneyPaidBy,
-    "toWhomMoneyPaid": this.toWhomMoneyPaid,
-    "billPaidDate": this.date,
-    "totalAmount": this.totalAmount,
-    "paidAmount": this.paidAmount,
-    "pendingAmount": this.pendingAmount,
-    "category": this.selected,
-    "legacy": this.legacy
-  }
-
-    console.log("it does nothing", formDetails);
-    console.log("this.legacy",this.legacy)
+  clickme(){
+    this.house.addExpences(this.NewExpence.value)
+    .subscribe(data => {
+      data
+      console.log("Responce",data)
+    },err => {
+      console.log("Errooor",err)
+    })
+    let trimDate = this.NewExpence.value.datePicker._i;
+    this.formatedDate = `${trimDate.date}-${trimDate.month+1}-${trimDate.year}`;
+    console.log(`${trimDate.date}-${trimDate.month+1}-${trimDate.year}`);
+    console.log("ran",this.NewExpence.value)
   }
 }

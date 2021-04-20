@@ -15,4 +15,7 @@ export class DreamHouseService {
   getList(){
     return this.http.get(`${this.baseUrl}${this.fetchUrl}`)
    }
+  addExpences(expences: object) {
+    return this.http.post<any>(`${this.baseUrl}${this.fetchUrl}`, expences)
+  }
 }
