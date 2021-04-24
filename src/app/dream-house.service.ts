@@ -8,7 +8,7 @@ export class DreamHouseService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseUrl = '';
+  readonly baseUrl = 'http://localhost:8000';
   readonly fetchUrl = '/expences';
   readonly ImageURL = '/imageUpload'
 
@@ -16,6 +16,9 @@ export class DreamHouseService {
     return this.http.get(`${this.baseUrl}${this.fetchUrl}`)
    }
   addExpences(expences: object) {
-    return this.http.post<any>(`${this.baseUrl}${this.fetchUrl}`, expences)
+    return this.http.post<any>(`${this.baseUrl}${this.ImageURL}`, expences)
+  }
+  updateExpences(id:any,data:any){
+    return this.http.put(`${this.baseUrl}${this.fetchUrl}/${id}`,data)
   }
 }

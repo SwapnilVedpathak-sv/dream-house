@@ -36,30 +36,83 @@ const upload = multer({ storage: storage })
 
 // POST Request for Image Upload
 
-app.post('/imageUpload',JsonData, upload.single('file') , (req, res)=>{
-    const file = req.file;
-    
-    var send = new Expences({
 
-        paidBy:req.body.paidBy,
-        toWhom:req.body.toWhom,
-        date:req.body.date,
-        amount:req.body.amount,
-        description:req.body.description,
-        imgUrl:file.filename
-     })
+app.post('/imageUpload',JsonData ,upload.single('file') , (req,res,next)=>{
+  const file = req.file;
+  console.log(file.filename);
+  if(!file){
+      const error = new error('no file')
+      error.httpStatusCode=400
+      return next(error)
+  }
 
-    send.save().then(()=>{
-        console.log(file.filename);
-    }).catch((e)=>{
-        console.log(e);
-    })
-    res.send(file)
- })
+  var send = new Expences({
+
+      moneyPaidBy: req.body.moneyPaidBy,
+      toWhomMoneyPaid: req.body.toWhomMoneyPaid,
+      totalAmount: req.body.totalAmount,
+      paidAmount: req.body.paidAmount,
+      pendingAmount: req.body.pendingAmount,
+      category: req.body.category,
+      billDate: req.body.datePicker,
+      imageData: file.filename
+  })
+  send.save().then((responce)=>{
+      console.log(file.filename);
+  }).catch((err)=>{
+      console.log(err);
+  })
+  res.send(file)
+
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.post('/imageUpload',JsonData, upload.single('file') , (req, res)=>{
+//     const file = req.file;
+
+//     var send = new Expences({
+
+//       moneyPaidBy: req.body.moneyPaidBy,
+//       toWhomMoneyPaid: req.body.toWhomMoneyPaid,
+//       totalAmount: req.body.totalAmount,
+//       paidAmount: req.body.paidAmount,
+//       pendingAmount: req.body.pendingAmount,
+//       category: req.body.category,
+//       datePicker: req.body.datePicker,
+//       formatedDate: req.body.formatedDate,
+//       imageData: file.filename
+//      })
+
+//     send.save().then(()=>{
+//         console.log(file.filename);
+//         res.status(201).send(send);
+//     }).catch((e)=>{
+//         console.log(e);
+//         res.status(400).send(e);
+//     })
+//     // res.send(file);
+//     res.status(201).send(send);
+//  })
 
 // Post Request For Create Student
 
-app.post("/expences", ( req, res ) =>{
+ app.post("/expences", ( req, res ) =>{
     const postRequest = new Expences(req.body);
     postRequest.save().then(() => {
         res.status(201).send(postRequest);

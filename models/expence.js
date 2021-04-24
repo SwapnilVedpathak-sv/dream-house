@@ -1,3 +1,4 @@
+const { stringify } = require("@angular/compiler/src/util");
 const mongoose = require("mongoose");
 const validator = require("validator");
 const expencesSchema = new mongoose.Schema({
@@ -7,8 +8,8 @@ const expencesSchema = new mongoose.Schema({
   paidAmount:Number,
   pendingAmount:Number,
   category:String,
-  datePicker:Object,
-  formatedDate:Object
+  billDate:String,
+  imageData:String
 })
 
 // New Collection
