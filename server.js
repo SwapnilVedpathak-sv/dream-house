@@ -35,7 +35,10 @@ var storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 // POST Request for Image Upload
-
+let lastId = 0;
+const getUniqueId = () => {
+  return lastId++;
+}
 
 app.post('/imageUpload',JsonData ,upload.single('file') , (req,res,next)=>{
   const file = req.file;
@@ -54,7 +57,8 @@ app.post('/imageUpload',JsonData ,upload.single('file') , (req,res,next)=>{
       paidAmount: req.body.paidAmount,
       pendingAmount: req.body.pendingAmount,
       category: req.body.category,
-      billDate: req.body.datePicker,
+      billDate: req.body.billDate.slice(0,15),
+      id: lastId++,
       imageData: file.filename
   })
   send.save().then((responce)=>{

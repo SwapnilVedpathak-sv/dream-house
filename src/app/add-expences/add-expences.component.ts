@@ -45,7 +45,7 @@ export class AddExpencesComponent implements OnInit {
   totalAmount:any;
   paidAmount:any;
   pendingAmount:any;
-  billDate:any;
+  billDate = '';
   category:any;
   imageData:any;
   data=[];
@@ -53,12 +53,9 @@ export class AddExpencesComponent implements OnInit {
 
 
 
-
-
-
   // formatedDate:any;
   // NewExpence : FormGroup;
-  // date = new FormControl(moment());
+  date = new FormControl(moment());
   // formData = new FormData();
   // images:any;
 
@@ -82,9 +79,8 @@ export class AddExpencesComponent implements OnInit {
     if(event.target.files.length > 0){
       const file = event.target.files[0];
       this.imageData=file;
-      console.log("",this.image)
+      console.log("this.imageData",this.imageData)
     }
-
   }
 
   onsubmit(form:NgForm){
@@ -103,13 +99,22 @@ export class AddExpencesComponent implements OnInit {
 
       this.http.post('http://localhost:8000/imageUpload',formData).subscribe((res)=>{
         console.log(res);
-        // this.resert();
+        this.reset();
         // this.fetchdataList();
 
       })
-
   }
 
+  reset(){
+    this.moneyPaidBy = ' ';
+    this.toWhomMoneyPaid = ' ';
+    this.totalAmount = ' ';
+    this.paidAmount = ' ';
+    this.pendingAmount = ' ';
+    this.billDate = '';
+    this.category = ' ';
+    this.imageData = ' ';
+  }
   // clickme(){
   //   this.house.addExpences(this.NewExpence.value)
   //   .subscribe(data => {

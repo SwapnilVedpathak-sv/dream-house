@@ -15,10 +15,10 @@
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="example-full-width">
-        <mat-label>Bill Paid Date</mat-label>
-        <input matInput [matDatepicker]="dp" [(ngModel)]="billDate" name="billDate">
-        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-        <mat-datepicker #dp></mat-datepicker>
+        <mat-label>Bill Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="billDate" name="billDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
       <mat-form-field class="example-full-width">

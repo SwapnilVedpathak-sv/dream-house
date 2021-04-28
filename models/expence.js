@@ -9,6 +9,7 @@ const expencesSchema = new mongoose.Schema({
   pendingAmount:Number,
   category:String,
   billDate:String,
+  id:Number,
   imageData:String
 })
 
