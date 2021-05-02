@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DreamHouseService } from '../dream-house.service';
-import {FormControl, NgForm} from '@angular/forms';
+import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as _moment from 'moment';
@@ -37,14 +37,16 @@ export const MY_FORMATS = {
 })
 export class UpdateExpenceComponent implements OnInit {
 
-  moneyPaidBy:any;
-  toWhomMoneyPaid:any;
-  totalAmount:any;
-  paidAmount:any;
-  pendingAmount:any;
-  billDate = '';
-  category:any;
-  imageData:any;
+  editResto = new FormGroup({
+    moneyPaidBy: new FormControl(''),
+    toWhomMoneyPaid: new FormControl(''),
+    totalAmount: new FormControl(''),
+    paidAmount: new FormControl(''),
+    pendingAmount: new FormControl(''),
+    billDate: new FormControl(''),
+    category: new FormControl(''),
+    imageData: new FormControl(''),
+  })
 
   date = new FormControl(moment());
 
@@ -58,6 +60,16 @@ export class UpdateExpenceComponent implements OnInit {
 
   ngOnInit() {
     console.log('Dialog got', this.data);
+    this.editResto = new FormGroup({
+      moneyPaidBy: new FormControl(this.data['moneyPaidBy']),
+      toWhomMoneyPaid: new FormControl(this.data['toWhomMoneyPaid']),
+      totalAmount: new FormControl(this.data['totalAmount']),
+      paidAmount: new FormControl(this.data['paidAmount']),
+      pendingAmount: new FormControl(this.data['pendingAmount']),
+      billDate: new FormControl(this.data['billDate']),
+      category: new FormControl(this.data['category']),
+      imageData: new FormControl(this.data['imageData'])
+    })
   }
 
   closeDialog() {
@@ -72,29 +84,35 @@ export class UpdateExpenceComponent implements OnInit {
 
     if(event.target.files.length > 0){
       const file = event.target.files[0];
-      this.imageData=file;
-      console.log("this.imageData",this.imageData)
+      // this.imageData=file;
+      // console.log("this.imageData",this.imageData)
     }
   }
 
-  onsubmit(form:NgForm){
+  collection(){
 
-    form.value.file=this.imageData;
 
-      const formData = new FormData();
-      formData.append('moneyPaidBy',this.moneyPaidBy)
-      formData.append('toWhomMoneyPaid',this.toWhomMoneyPaid)
-      formData.append('totalAmount',this.totalAmount)
-      formData.append('paidAmount',this.paidAmount)
-      formData.append('pendingAmount',this.pendingAmount)
-      formData.append('billDate',this.billDate)
-      formData.append('category',this.category)
-      formData.append('file',this.imageData)
+    console.log("item",this.editResto.value)
+    this.house.updateExpences(this.data._id,this.editResto.value).subscribe((result)=>{
+      console.log("result",result)
+      // this.alert= true;
+    })
+    // form.value.file=this.imageData;
 
-      this.http.put(`${this.house.baseUrl}${this.house.fetchUrl}/${this.data._id}`,formData).subscribe((res)=>{
-        console.log(res);
-        // this.reset();
-      })
+      // const formData = new FormData();
+      // formData.append('moneyPaidBy',this.data.moneyPaidBy)
+      // formData.append('toWhomMoneyPaid',this.data.toWhomMoneyPaid)
+      // formData.append('totalAmount',this.data.totalAmount)
+      // formData.append('paidAmount',this.data.paidAmount)
+      // formData.append('pendingAmount',this.data.pendingAmount)
+      // formData.append('billDate',this.data.billDate)
+      // formData.append('category',this.data.category)
+      // formData.append('file',this.data.imageData)
+
+      // this.http.put(`${this.house.baseUrl}${this.house.fetchUrl}/${this.data._id}`,formData).subscribe((res)=>{
+      //   console.log(res);
+      //   // this.reset();
+      // })
   }
 
   // reset(){

@@ -154,7 +154,8 @@ app.get("/expences/:id", async( req,res ) => {
 app.put("/expences/:id", async( req,res ) => {
     try{
         const _id = req.params.id;
-        const putRequest = await Expences.findByIdAndUpdate(_id, req.body, {
+        const putRequest = await Expences.findByIdAndUpdate(_id, 
+            req.body, {
             new : true
         });
         res.send(putRequest);

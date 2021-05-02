@@ -1,23 +1,23 @@
 <div class="basic-container">
-  <form class="example-form"  #formdata="ngForm" (ngSubmit)="onsubmit(formdata)">
+  <form class="example-form" [formGroup]="editResto" (ngSubmit)="collection()">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Money Paid By" [(ngModel)]="data.moneyPaidBy" name="moneyPaidBy">
+    <input matInput placeholder="Money Paid By" formControlName="moneyPaidBy">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="To Whom Money Paid" [(ngModel)]="data.toWhomMoneyPaid" name="toWhomMoneyPaid">
+    <input matInput placeholder="To Whom Money Paid" formControlName="toWhomMoneyPaid">
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="example-full-width">
     <mat-label>Bill Date</mat-label>
-    <input matInput [matDatepicker]="picker" [(ngModel)]="data.billDate" name="billDate">
+    <input matInput [matDatepicker]="picker" formControlName="billDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Select a Category</mat-label>
-    <mat-select [(ngModel)]="data.category" name="category">
+    <mat-select formControlName="category">
       <mat-option>None</mat-option>
       <mat-option value="Labour">Labour</mat-option>
       <mat-option value="Steel">Steel</mat-option>
@@ -27,21 +27,24 @@
 
   <mat-form-field class="example-full-width">
     <mat-label>Total Amount</mat-label>
-    <input matInput [(ngModel)]="data.totalAmount" type="number" name="totalAmount" placeholder="Enter Mobile Number">
+    <input matInput formControlName="totalAmount" type="number" placeholder="Enter Mobile Number">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Paid Amount</mat-label>
-    <input matInput [(ngModel)]="data.paidAmount" type="number" name="paidAmount" placeholder="Enter Mobile Number">
+    <input matInput formControlName="paidAmount" type="number" placeholder="Enter Mobile Number">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <mat-label>Pending Amount</mat-label>
-    <input matInput [(ngModel)]="data.pendingAmount" type="number" name="pendingAmount" placeholder="Enter Mobile Number">
+    <input matInput formControlName="pendingAmount" type="number" placeholder="Enter Mobile Number">
   </mat-form-field>
 
   <div>
-    <input [(ngModel)]="imageData" type="file" name="file" accept="image/*" (change)="selectImage($event)">
+    <img style="height:100px; width: 100px;" src="{{ data.imageData }}" />
+  </div>
+  <div>
+    <!-- <input [(ngModel)]="imageData" type="file" name="file" accept="image/*" (change)="selectImage($event)"> -->
   </div>
 
   <button mat-button (click)="closeDialog()">Close</button>
