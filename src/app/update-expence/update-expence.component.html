@@ -1,5 +1,5 @@
 <div class="basic-container">
-  <form class="example-form"  #formdata="ngForm">
+  <form class="example-form"  #formdata="ngForm" (ngSubmit)="onsubmit(formdata)">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Money Paid By" [(ngModel)]="data.moneyPaidBy" name="moneyPaidBy">
   </mat-form-field>
@@ -39,6 +39,10 @@
     <mat-label>Pending Amount</mat-label>
     <input matInput [(ngModel)]="data.pendingAmount" type="number" name="pendingAmount" placeholder="Enter Mobile Number">
   </mat-form-field>
+
+  <div>
+    <input [(ngModel)]="imageData" type="file" name="file" accept="image/*" (change)="selectImage($event)">
+  </div>
 
   <button mat-button (click)="closeDialog()">Close</button>
 

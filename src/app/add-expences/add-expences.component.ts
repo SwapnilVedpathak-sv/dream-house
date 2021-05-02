@@ -1,12 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DreamHouseService } from '../dream-house.service';
-import {FormControl, FormGroup, FormBuilder, NgForm} from '@angular/forms';
+import {FormControl, NgForm} from '@angular/forms';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import * as _moment from 'moment';
 import {default as _rollupMoment} from 'moment';
-import { ActivatedRoute } from '@angular/router';
 
 const moment = _rollupMoment || _moment;
 
@@ -37,9 +36,6 @@ export const MY_FORMATS = {
 })
 export class AddExpencesComponent implements OnInit {
 
-  image:any;
-  multipleimage = [];
-  // Id;
   moneyPaidBy:any;
   toWhomMoneyPaid:any;
   totalAmount:any;
@@ -48,28 +44,10 @@ export class AddExpencesComponent implements OnInit {
   billDate = '';
   category:any;
   imageData:any;
-  data=[];
 
-
-
-
-  // formatedDate:any;
-  // NewExpence : FormGroup;
   date = new FormControl(moment());
-  // formData = new FormData();
-  // images:any;
 
-  constructor(private http:HttpClient, private house:DreamHouseService, private fb : FormBuilder, private router: ActivatedRoute) {
-    // this.NewExpence = this.fb.group({
-    //   moneyPaidBy:[],
-    //   toWhomMoneyPaid:[],
-    //   totalAmount:[],
-    //   paidAmount:[],
-    //   pendingAmount:[],
-    //   category:[],
-    //   datePicker:[]
-    // })
-   }
+  constructor(private http:HttpClient, private house:DreamHouseService) { }
 
   ngOnInit(): void {
   }
@@ -97,11 +75,9 @@ export class AddExpencesComponent implements OnInit {
       formData.append('category',this.category)
       formData.append('file',this.imageData)
 
-      this.http.post('http://localhost:8000/imageUpload',formData).subscribe((res)=>{
+      this.http.post(`${this.house.baseUrl}${this.house.ImageURL}`,formData).subscribe((res)=>{
         console.log(res);
         this.reset();
-        // this.fetchdataList();
-
       })
   }
 
@@ -115,17 +91,4 @@ export class AddExpencesComponent implements OnInit {
     this.category = ' ';
     this.imageData = ' ';
   }
-  // clickme(){
-  //   this.house.addExpences(this.NewExpence.value)
-  //   .subscribe(data => {
-  //     data
-  //     console.log("Responce",data)
-  //   },err => {
-  //     console.log("Errooor",err)
-  //   })
-  //   let trimDate = this.NewExpence.value.datePicker._i;
-  //   this.formatedDate = `${trimDate.date}-${trimDate.month+1}-${trimDate.year}`;
-  //   console.log(`${trimDate.date}-${trimDate.month+1}-${trimDate.year}`);
-  //   console.log("ran",this.NewExpence.value)
-  // }
 }

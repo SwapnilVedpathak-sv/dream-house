@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   openDialog(row: any) {
     console.log('Row clicked', row);
     const dialog = this.dialog.open(UpdateExpenceComponent, {
-       height: "80%", width: "500px" ,
+       height: "600px", width: "500px" ,
       // Can be closed only by clicking the close button
       disableClose: true,
       data: row
