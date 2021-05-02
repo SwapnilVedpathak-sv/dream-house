@@ -51,6 +51,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { UpdateExpenceComponent } from './update-expence/update-expence.component';
 
 
 
@@ -58,7 +59,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
   declarations: [
     AppComponent,
     HomeComponent,
-    AddExpencesComponent
+    AddExpencesComponent,
+    UpdateExpenceComponent
   ],
   imports: [
     NgxMatFileInputModule,

@@ -1,46 +1,53 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="example-container mat-elevation-z8">
+<mat-table mat-table [dataSource]="dataSource">
 
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>No.</th>
-    <td mat-cell *matCellDef="let element">{{element.id}}</td>
-  </ng-container>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="moneyPaidBy">
-    <th mat-header-cell *matHeaderCellDef>Money Paid By</th>
-    <td mat-cell *matCellDef="let element">{{element.moneyPaidBy}}</td>
-  </ng-container>
+    <ng-container matColumnDef="moneyPaidBy">
+      <th mat-header-cell *matHeaderCellDef>Money Paid By</th>
+      <td mat-cell *matCellDef="let element">{{element.moneyPaidBy}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="toWhomMoneyPaid">
-    <th mat-header-cell *matHeaderCellDef>To Whom</th>
-    <td mat-cell *matCellDef="let element">{{element.toWhomMoneyPaid}}</td>
-  </ng-container>
+    <ng-container matColumnDef="toWhomMoneyPaid">
+      <th mat-header-cell *matHeaderCellDef>To Whom</th>
+      <td mat-cell *matCellDef="let element">{{element.toWhomMoneyPaid}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="category">
-    <th mat-header-cell *matHeaderCellDef>Category</th>
-    <td mat-cell *matCellDef="let element">{{element.category}} </td>
-  </ng-container>
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let element">{{element.category}} </td>
+    </ng-container>
 
-  <ng-container matColumnDef="billDate">
-    <th mat-header-cell *matHeaderCellDef>Bill Date</th>
-    <td mat-cell *matCellDef="let element">{{element.billDate}}</td>
-  </ng-container>
+    <ng-container matColumnDef="billDate">
+      <th mat-header-cell *matHeaderCellDef>Bill Date</th>
+      <td mat-cell *matCellDef="let element">{{element.billDate}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="totalAmount">
-    <th mat-header-cell *matHeaderCellDef>Total Amount</th>
-    <td mat-cell *matCellDef="let element">{{element.totalAmount}}</td>
-  </ng-container>
+    <ng-container matColumnDef="totalAmount">
+      <th mat-header-cell *matHeaderCellDef>Total Amount</th>
+      <td mat-cell *matCellDef="let element">{{element.totalAmount}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="paidAmount">
-    <th mat-header-cell *matHeaderCellDef>Paid Amount</th>
-    <td mat-cell *matCellDef="let element">{{element.paidAmount}}</td>
-  </ng-container>
+    <ng-container matColumnDef="paidAmount">
+      <th mat-header-cell *matHeaderCellDef>Paid Amount</th>
+      <td mat-cell *matCellDef="let element">{{element.paidAmount}}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="pendingAmount">
-    <th mat-header-cell *matHeaderCellDef>Pending Amount</th>
-    <td mat-cell *matCellDef="let element">{{element.pendingAmount}}</td>
-  </ng-container>
+    <ng-container matColumnDef="pendingAmount">
+      <th mat-header-cell *matHeaderCellDef>Pending Amount</th>
+      <td mat-cell *matCellDef="let element">{{element.pendingAmount}}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
-</table>
-<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    <ng-container matColumnDef="pending">
+      <th mat-header-cell *matHeaderCellDef>Update/Delete</th>
+      <td mat-cell *matCellDef="let element">{{element.pendingAmount}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
+  </mat-table>
+  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
