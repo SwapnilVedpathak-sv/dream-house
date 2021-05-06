@@ -1,5 +1,5 @@
 <div class="basic-container">
-  <form class="example-form" [formGroup]="editResto" (ngSubmit)="collection()">
+  <form class="example-form" [formGroup]="editResto">
   <mat-form-field class="example-full-width">
     <input matInput placeholder="Money Paid By" formControlName="moneyPaidBy">
   </mat-form-field>
@@ -49,6 +49,6 @@
 
   <button mat-button (click)="closeDialog()">Close</button>
 
-  <button mat-button >Update</button>
+  <button mat-button (click)="collection()">Update</button>
   </form>
   </div>

@@ -50,4 +50,14 @@ export class HomeComponent implements OnInit {
       data: row
     });
   }
+
+  deleteCurrentExpence(item:any){
+    console.log("runhsdughfdjghu",item)
+    console.warn("swapnil",this.collection)
+    this.collection.splice(item-1, 1)
+    
+    // this.house.deleteCurrentExpence(id, item).subscribe((result)=>{
+    //   console.warn(result)
+    // })
+  }
 }

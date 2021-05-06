@@ -21,4 +21,7 @@ export class DreamHouseService {
   updateExpences(id:any,data:any){
     return this.http.put(`${this.baseUrl}${this.fetchUrl}/${id}`,data)
   }
+  // deleteCurrentExpence(id:any, data:any){
+  //   return this.http.delete(`${this.baseUrl}${this.fetchUrl}/${id}`)
+  // }
 }
